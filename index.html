@@ -8,13 +8,13 @@
   <meta name="keywords" content="estética São Vicente SP, clínica de estética São Vicente, enzimas lipolíticas, corrente russa, drenagem linfática, massoterapia, estética avançada, Siriaco's Estética, cosmetologia São Vicente">
   <meta name="author" content="Siriaco's Estética">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.siriacoestetica.com.br/">
+  <link rel="canonical" href="https://siriacosestetica.com.br/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Siriaco's Estética | Estética Avançada em São Vicente/SP">
   <meta property="og:description" content="Procedimentos seguros e personalizados focados em resultados reais. Agende sua avaliação gratuita.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.siriacoestetica.com.br/">
+  <meta property="og:url" content="https://siriacosestetica.com.br/">
   <meta property="og:image" content="og-image.jpg">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Siriaco's Estética">
@@ -25,10 +25,12 @@
   <meta name="twitter:description" content="Procedimentos seguros e personalizados focados em resultados reais.">
   <meta name="twitter:image" content="og-image.jpg">
 
-  <!-- Fonts -->
+  <!-- Fonts — non-render-blocking async load -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"></noscript>
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -1160,7 +1162,7 @@
             <div class="hero-arch" aria-hidden="true"></div>
             <div class="hero-img-wrapper">
               <!-- Replace src with actual hero image -->
-              <img src="hero-mariana.jpg" alt="Mariana Siriaco - Profissional de Estética Avançada na Siriaco's Estética em São Vicente SP" loading="eager">
+              <img src="hero-mariana.jpg" alt="Mariana Siriaco - Profissional de Estética Avançada na Siriaco's Estética em São Vicente SP" loading="eager" width="480" height="640" fetchpriority="high">
             </div>
             <div class="hero-badge" aria-hidden="true">
               <div class="hero-badge-inner">
@@ -1181,7 +1183,7 @@
         <div class="about-grid">
           <div class="about-img reveal">
             <!-- Replace src with actual about image -->
-            <img src="clinica-mariana.jpg" alt="Mariana Siriaco no espaço da Siriaco's Estética em São Vicente SP" loading="lazy">
+            <img src="clinica-mariana.jpg" alt="Mariana Siriaco no espaço da Siriaco's Estética em São Vicente SP" loading="lazy" width="480" height="600">
           </div>
           <div class="about-content reveal">
             <span class="section-label">Sobre Nós</span>
@@ -1574,6 +1576,26 @@
           const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
           window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
+      });
+    });
+
+    // WhatsApp click tracking
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+      link.addEventListener('click', function() {
+        const label = this.textContent.trim().slice(0, 40) || 'WhatsApp Button';
+        // Cloudflare Web Analytics custom event
+        if (typeof window.cf_analytics !== 'undefined') {
+          window.cf_analytics.push({ event: 'whatsapp_click', label: label });
+        }
+        // Google Analytics 4 (if added later)
+        if (typeof window.gtag !== 'undefined') {
+          gtag('event', 'whatsapp_click', {
+            event_category: 'engagement',
+            event_label: label
+          });
+        }
+        // Always log for debugging
+        console.log('[Siriaco] WhatsApp click:', label);
       });
     });
   </script>

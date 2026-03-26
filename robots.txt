@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://siriacosestetica.com.br/sitemap.xml
