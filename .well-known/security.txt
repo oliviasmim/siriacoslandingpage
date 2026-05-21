@@ -1,0 +1,3 @@
+Contact: https://wa.me/5513997147555
+Expires: 2027-05-21T00:00:00.000Z
+Canonical: https://siriacosestetica.com.br/.well-known/security.txt
