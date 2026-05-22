@@ -644,8 +644,13 @@
     .banner-slide img {
       width: 100%;
       height: auto;
+      max-height: 420px;
       display: block;
       object-fit: cover;
+    }
+
+    @media (max-width: 640px) {
+      .banner-slide img { max-height: none; }
     }
 
     .banner-dots {
@@ -1806,10 +1811,10 @@
       });
 
       // Auto-advance every 5s, pause on hover
-      let timer = setInterval(function() { goTo(current + 1); }, 5000);
+      let timer = setInterval(function() { goTo(current + 1); }, 3000);
       track.parentElement.addEventListener('mouseenter', function() { clearInterval(timer); });
       track.parentElement.addEventListener('mouseleave', function() {
-        timer = setInterval(function() { goTo(current + 1); }, 5000);
+        timer = setInterval(function() { goTo(current + 1); }, 3000);
       });
     })();
   </script>
