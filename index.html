@@ -619,6 +619,62 @@
     }
 
     /* =============================================
+       BANNER SLIDESHOW
+       ============================================= */
+    .banner-slideshow {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: var(--blush-ultra);
+      line-height: 0;
+    }
+
+    .banner-track {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+
+    .banner-slide {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    .banner-slide picture,
+    .banner-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .banner-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .banner-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s var(--ease);
+    }
+    .banner-dot.active {
+      background: var(--white);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* =============================================
        ABOUT
        ============================================= */
     .about {
@@ -1215,6 +1271,44 @@
     </section>
 
     <!-- ============================================
+         BANNER SLIDESHOW
+         ============================================ -->
+    <section class="banner-slideshow" aria-label="Banners promocionais">
+      <div class="banner-track" id="bannerTrack">
+        <div class="banner-slide">
+          <picture>
+            <source media="(max-width: 640px)" srcset="banners/cursos-mobile.webp">
+            <img src="banners/cursos-desktop.webp" alt="Curso de Ventosaterapia e Massagem Desportiva" loading="lazy" width="1920" height="600">
+          </picture>
+        </div>
+        <div class="banner-slide">
+          <picture>
+            <source media="(max-width: 640px)" srcset="banners/massoterapia-mobile.webp">
+            <img src="banners/massoterapia-desktop.webp" alt="Massoterapia by Mariana Siriaco" loading="lazy" width="1920" height="600">
+          </picture>
+        </div>
+        <div class="banner-slide">
+          <picture>
+            <source media="(max-width: 640px)" srcset="banners/consulta-estetica-mobile.webp">
+            <img src="banners/consulta-estetica-desktop.webp" alt="Consulta Estética — Atendimentos Personalizados" loading="lazy" width="1920" height="600">
+          </picture>
+        </div>
+        <div class="banner-slide">
+          <picture>
+            <source media="(max-width: 640px)" srcset="banners/protocolos-mobile.webp">
+            <img src="banners/protocolos-desktop.webp" alt="Protocolos Personalizados" loading="lazy" width="1920" height="600">
+          </picture>
+        </div>
+      </div>
+      <div class="banner-dots" id="bannerDots" role="tablist" aria-label="Navegação de banners">
+        <button class="banner-dot active" data-index="0" aria-label="Banner 1" role="tab"></button>
+        <button class="banner-dot" data-index="1" aria-label="Banner 2" role="tab"></button>
+        <button class="banner-dot" data-index="2" aria-label="Banner 3" role="tab"></button>
+        <button class="banner-dot" data-index="3" aria-label="Banner 4" role="tab"></button>
+      </div>
+    </section>
+
+    <!-- ============================================
          ABOUT
          ============================================ -->
     <section id="sobre" class="about" aria-labelledby="about-title">
@@ -1692,6 +1786,32 @@
 
     initCarousel('resultsCarousel', '#carouselDots');
     initCarousel('espacoCarousel', '#espacoDots');
+
+    // Banner auto-slideshow
+    (function() {
+      const track = document.getElementById('bannerTrack');
+      const dots = document.querySelectorAll('#bannerDots .banner-dot');
+      if (!track || !dots.length) return;
+      let current = 0;
+      const total = dots.length;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      }
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() { goTo(parseInt(this.dataset.index)); });
+      });
+
+      // Auto-advance every 5s, pause on hover
+      let timer = setInterval(function() { goTo(current + 1); }, 5000);
+      track.parentElement.addEventListener('mouseenter', function() { clearInterval(timer); });
+      track.parentElement.addEventListener('mouseleave', function() {
+        timer = setInterval(function() { goTo(current + 1); }, 5000);
+      });
+    })();
   </script>
 </body>
 </html>
