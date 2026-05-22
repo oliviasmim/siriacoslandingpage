@@ -897,83 +897,6 @@
     }
 
     /* =============================================
-       ESPACO / SPACE GALLERY
-       ============================================= */
-    .espaco {
-      padding: 120px 0;
-      background: var(--blush-ultra);
-    }
-
-    .espaco-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-    .espaco-header .section-subtitle { margin-left: auto; margin-right: auto; }
-
-    .espaco-slideshow {
-      position: relative;
-      max-width: 440px;
-      width: 100%;
-      margin: 0 auto;
-      aspect-ratio: 3/4;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: var(--blush-light);
-    }
-
-    .espaco-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.9s ease;
-      pointer-events: none;
-    }
-    .espaco-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .espaco-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .espaco-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s var(--ease), transform 0.3s var(--ease);
-    }
-    .espaco-arrow:hover {
-      background: rgba(255, 255, 255, 0.97);
-      transform: translateY(-50%) scale(1.08);
-    }
-    .espaco-arrow--prev { left: 12px; }
-    .espaco-arrow--next { right: 12px; }
-    .espaco-arrow svg { width: 18px; height: 18px; fill: var(--wine); }
-
-    .espaco-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
-    }
-
-    /* =============================================
        CONTACT / LOCATION
        ============================================= */
     .contact {
@@ -1515,48 +1438,6 @@
     </section>
 
     <!-- ============================================
-         ESPAÇO / SPACE GALLERY
-         ============================================ -->
-    <section id="espaco" class="espaco" aria-labelledby="espaco-title">
-      <div class="container">
-        <div class="espaco-header reveal">
-          <span class="section-label">Nosso Espaço</span>
-          <h2 id="espaco-title">Conheça Nosso<br>Espaço</h2>
-          <p class="section-subtitle">Um ambiente pensado para o seu conforto e bem-estar, do atendimento ao tratamento.</p>
-        </div>
-
-        <div class="espaco-slideshow reveal" id="espacoSlideshow" aria-label="Fotos do espaço">
-          <div class="espaco-slide active">
-            <img src="espaco/recepcao.jpg" alt="Recepção da Siriaco's Estética" loading="lazy">
-          </div>
-          <div class="espaco-slide">
-            <img src="espaco/sala-tratamento-espelhos.jpg" alt="Sala de tratamento com espelhos orgânicos" loading="lazy">
-          </div>
-          <div class="espaco-slide">
-            <img src="espaco/sala-tratamento-espelho-arco.jpg" alt="Sala de tratamento com espelho arco iluminado" loading="lazy">
-          </div>
-          <div class="espaco-slide">
-            <img src="espaco/cafe-boas-vindas.jpg" alt="Café de boas-vindas" loading="lazy">
-          </div>
-
-          <button class="espaco-arrow espaco-arrow--prev" aria-label="Foto anterior">
-            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-          </button>
-          <button class="espaco-arrow espaco-arrow--next" aria-label="Próxima foto">
-            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-          </button>
-        </div>
-
-        <div class="espaco-dots" id="espacoDots" role="tablist" aria-label="Navegação de fotos">
-          <button class="carousel-dot active" data-index="0" aria-label="Foto 1" role="tab"></button>
-          <button class="carousel-dot" data-index="1" aria-label="Foto 2" role="tab"></button>
-          <button class="carousel-dot" data-index="2" aria-label="Foto 3" role="tab"></button>
-          <button class="carousel-dot" data-index="3" aria-label="Foto 4" role="tab"></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================
          CONTACT / LOCATION
          ============================================ -->
     <section id="contato" class="contact" aria-labelledby="contact-title">
@@ -1565,6 +1446,30 @@
           <span class="section-label">Contato</span>
           <h2 id="contact-title">Venha Nos Conhecer</h2>
           <p class="section-subtitle">Estamos prontos para te atender. Agende sua avaliação gratuita e conheça nosso espaço em São Vicente.</p>
+        </div>
+
+        <div class="results-carousel-wrapper reveal">
+          <div class="results-gallery" id="espacoCarousel" role="list">
+            <div class="result-card" role="listitem">
+              <img src="espaco/recepcao.jpg" alt="Recepção do espaço Siriaco's Estética" loading="lazy" width="600" height="800">
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="espaco/sala-espelhos.jpg" alt="Sala de atendimento com espelhos" loading="lazy" width="600" height="800">
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="espaco/sala-espelho-arco.jpg" alt="Sala de atendimento com espelho arco" loading="lazy" width="600" height="800">
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="espaco/sala-cafe.jpg" alt="Espaço de boas-vindas com café" loading="lazy" width="600" height="800">
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-dots" id="espacoDots" aria-label="Navegação das fotos do espaço" role="tablist">
+          <button class="carousel-dot active" data-carousel="espacoCarousel" data-index="0" aria-label="Foto 1" role="tab"></button>
+          <button class="carousel-dot" data-carousel="espacoCarousel" data-index="1" aria-label="Foto 2" role="tab"></button>
+          <button class="carousel-dot" data-carousel="espacoCarousel" data-index="2" aria-label="Foto 3" role="tab"></button>
+          <button class="carousel-dot" data-carousel="espacoCarousel" data-index="3" aria-label="Foto 4" role="tab"></button>
         </div>
 
         <div class="contact-grid">
@@ -1776,17 +1681,20 @@
       });
     });
 
-    // Carousel dots (generic factory)
-    function initCarousel(carouselId, dotsId) {
+    // Carousel dots — works for any carousel/dots pair
+    function initCarousel(carouselId, dotsSelector) {
       const carousel = document.getElementById(carouselId);
-      const dots = document.querySelectorAll('#' + dotsId + ' .carousel-dot');
+      const dots = document.querySelectorAll(dotsSelector + ' .carousel-dot');
       if (!carousel || !dots.length) return;
+
       dots.forEach(function(dot) {
         dot.addEventListener('click', function() {
-          const card = carousel.children[parseInt(this.dataset.index)];
+          const index = parseInt(this.dataset.index);
+          const card = carousel.children[index];
           if (card) carousel.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
         });
       });
+
       carousel.addEventListener('scroll', function() {
         const cardWidth = carousel.children[0] ? carousel.children[0].offsetWidth + 20 : 1;
         const active = Math.round(carousel.scrollLeft / cardWidth);
@@ -1794,37 +1702,8 @@
       }, { passive: true });
     }
 
-    initCarousel('resultsCarousel', 'carouselDots');
-
-    // Espaço slideshow
-    (function() {
-      const slides = Array.from(document.querySelectorAll('.espaco-slide'));
-      const dots = Array.from(document.querySelectorAll('#espacoDots .carousel-dot'));
-      if (!slides.length) return;
-      let current = 0;
-      let timer;
-
-      function goTo(index) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (index + slides.length) % slides.length;
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
-      }
-
-      function startTimer() { timer = setInterval(function() { goTo(current + 1); }, 5000); }
-      function stopTimer() { clearInterval(timer); }
-
-      document.querySelector('.espaco-arrow--prev').addEventListener('click', function() { stopTimer(); goTo(current - 1); startTimer(); });
-      document.querySelector('.espaco-arrow--next').addEventListener('click', function() { stopTimer(); goTo(current + 1); startTimer(); });
-      dots.forEach(function(dot, i) { dot.addEventListener('click', function() { stopTimer(); goTo(i); startTimer(); }); });
-
-      const ss = document.getElementById('espacoSlideshow');
-      ss.addEventListener('mouseenter', stopTimer);
-      ss.addEventListener('mouseleave', startTimer);
-
-      startTimer();
-    })();
+    initCarousel('resultsCarousel', '#carouselDots');
+    initCarousel('espacoCarousel', '#espacoDots');
   </script>
 </body>
 </html>
