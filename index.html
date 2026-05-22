@@ -910,13 +910,22 @@
     }
     .espaco-header .section-subtitle { margin-left: auto; margin-right: auto; }
 
-    .espaco-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .espaco-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+      margin-bottom: 0;
     }
+    .espaco-carousel::-webkit-scrollbar { display: none; }
 
     .espaco-foto {
+      flex: 0 0 calc(33.333% - 14px);
+      scroll-snap-align: start;
       border-radius: var(--radius-lg);
       overflow: hidden;
       aspect-ratio: 3/4;
@@ -931,8 +940,19 @@
     }
     .espaco-foto:hover img { transform: scale(1.04); }
 
+    .espaco-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .espaco-foto { flex: 0 0 calc(50% - 10px); }
+    }
+
     @media (max-width: 480px) {
-      .espaco-grid { gap: 10px; }
+      .espaco-foto { flex: 0 0 82%; }
     }
 
     /* =============================================
@@ -1487,19 +1507,26 @@
           <p class="section-subtitle">Um ambiente pensado para o seu conforto e bem-estar, do atendimento ao tratamento.</p>
         </div>
 
-        <div class="espaco-grid">
-          <div class="espaco-foto reveal">
+        <div class="espaco-carousel reveal" id="espacoCarousel" role="list">
+          <div class="espaco-foto" role="listitem">
             <img src="espaco/recepcao.jpg" alt="Recepção da Siriaco's Estética com logo e arranjo de flores rosas" loading="lazy">
           </div>
-          <div class="espaco-foto reveal">
+          <div class="espaco-foto" role="listitem">
             <img src="espaco/sala-tratamento-espelhos.jpg" alt="Sala de tratamento com espelhos orgânicos e maca estética" loading="lazy">
           </div>
-          <div class="espaco-foto reveal">
+          <div class="espaco-foto" role="listitem">
             <img src="espaco/sala-tratamento-espelho-arco.jpg" alt="Sala de tratamento com espelho arco iluminado e poltrona" loading="lazy">
           </div>
-          <div class="espaco-foto reveal">
+          <div class="espaco-foto" role="listitem">
             <img src="espaco/cafe-boas-vindas.jpg" alt="Café de boas-vindas no espaço da Siriaco's Estética" loading="lazy">
           </div>
+        </div>
+
+        <div class="espaco-dots" id="espacoDots" aria-label="Navegação do carrossel do espaço" role="tablist">
+          <button class="carousel-dot active" data-index="0" aria-label="Foto 1" role="tab"></button>
+          <button class="carousel-dot" data-index="1" aria-label="Foto 2" role="tab"></button>
+          <button class="carousel-dot" data-index="2" aria-label="Foto 3" role="tab"></button>
+          <button class="carousel-dot" data-index="3" aria-label="Foto 4" role="tab"></button>
         </div>
       </div>
     </section>
@@ -1724,26 +1751,26 @@
       });
     });
 
-    // Carousel dots
-    (function() {
-      const carousel = document.getElementById('resultsCarousel');
-      const dots = document.querySelectorAll('#carouselDots .carousel-dot');
+    // Carousel dots (generic factory)
+    function initCarousel(carouselId, dotsId) {
+      const carousel = document.getElementById(carouselId);
+      const dots = document.querySelectorAll('#' + dotsId + ' .carousel-dot');
       if (!carousel || !dots.length) return;
-
       dots.forEach(function(dot) {
         dot.addEventListener('click', function() {
-          const index = parseInt(this.dataset.index);
-          const card = carousel.children[index];
+          const card = carousel.children[parseInt(this.dataset.index)];
           if (card) carousel.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
         });
       });
-
       carousel.addEventListener('scroll', function() {
         const cardWidth = carousel.children[0] ? carousel.children[0].offsetWidth + 20 : 1;
         const active = Math.round(carousel.scrollLeft / cardWidth);
         dots.forEach(function(d, i) { d.classList.toggle('active', i === active); });
       }, { passive: true });
-    })();
+    }
+
+    initCarousel('resultsCarousel', 'carouselDots');
+    initCarousel('espacoCarousel', 'espacoDots');
   </script>
 </body>
 </html>
