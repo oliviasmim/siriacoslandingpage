@@ -856,6 +856,152 @@
 
     .results-cta { text-align: center; }
 
+    /* =============================================
+       COURSES
+       ============================================= */
+    .courses {
+      padding: 120px 0;
+      background: var(--wine-deep);
+      position: relative;
+      overflow: hidden;
+    }
+    .courses::before {
+      content: '';
+      position: absolute;
+      top: -240px; right: -240px;
+      width: 640px; height: 640px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(172,36,97,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .courses-header { text-align: center; margin-bottom: 72px; }
+    .courses-header .section-label { color: rgba(255,218,237,0.7); }
+    .courses-header h2 { color: var(--white); }
+    .courses-header h2 em { color: var(--blush); font-style: italic; }
+    .courses-header .section-subtitle { color: rgba(255,218,237,0.6); max-width: 540px; margin: 0 auto; }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .course-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,218,237,0.12);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .course-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,218,237,0.28);
+    }
+
+    .course-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(255,218,237,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+    }
+    .course-icon svg { width: 24px; height: 24px; color: var(--blush); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .course-badge {
+      display: inline-flex;
+      background: rgba(172,36,97,0.28);
+      color: var(--blush);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .course-name {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .course-meta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .course-meta span {
+      font-size: 0.76rem;
+      color: rgba(255,218,237,0.55);
+      font-weight: 500;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .course-meta span svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    .course-topics { margin-bottom: 28px; }
+    .course-topics li {
+      font-size: 0.83rem;
+      color: rgba(255,218,237,0.7);
+      line-height: 1.5;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,218,237,0.06);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .course-topics li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+
+    .course-cert {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--blush);
+      letter-spacing: 0.02em;
+    }
+    .course-cert svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
+
+    .courses-gallery {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 64px;
+      padding-bottom: 4px;
+    }
+    .courses-gallery::-webkit-scrollbar { display: none; }
+
+    .courses-gallery-item {
+      flex: 0 0 340px;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .courses-gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+    .courses-gallery-item:hover img { transform: scale(1.04); }
+
+    .courses-cta { text-align: center; }
+    .courses-cta p { color: rgba(255,218,237,0.6); margin-bottom: 24px; font-size: 0.95rem; }
+    .btn-on-dark {
+      background: var(--white);
+      color: var(--wine-deep);
+      border-color: var(--white);
+    }
+    .btn-on-dark:hover { background: var(--blush); border-color: var(--blush); }
+
     /* Testimonials */
     .testimonials {
       margin-top: 80px;
@@ -1120,6 +1266,9 @@
       .result-card { flex: 0 0 82%; }
       .contact-actions { flex-direction: column; }
       .contact-actions .btn { justify-content: center; }
+      .courses { padding: 80px 0; }
+      .courses-grid { grid-template-columns: 1fr; gap: 16px; }
+      .courses-gallery-item { flex: 0 0 260px; aspect-ratio: 3/4; }
     }
   </style>
 </head>
@@ -1134,6 +1283,7 @@
 
       <nav class="nav-links" role="navigation" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
+        <a href="#cursos">Cursos</a>
         <a href="#sobre">Sobre</a>
         <a href="#tratamentos">Tratamentos</a>
         <a href="#resultados">Resultados</a>
@@ -1159,6 +1309,7 @@
   <!-- Mobile nav overlay -->
   <div class="mobile-nav" role="navigation" aria-label="Menu mobile">
     <a href="#inicio">Início</a>
+    <a href="#cursos">Cursos</a>
     <a href="#sobre">Sobre</a>
     <a href="#tratamentos">Tratamentos</a>
     <a href="#resultados">Resultados</a>
@@ -1210,6 +1361,125 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         COURSES
+         ============================================ -->
+    <section id="cursos" class="courses" aria-labelledby="courses-title">
+      <div class="container">
+        <div class="courses-header reveal">
+          <span class="section-label">Formação Profissional</span>
+          <h2 id="courses-title">Aprenda com Quem<br>É <em>Referência</em></h2>
+          <p class="section-subtitle">Cursos profissionalizantes ministrados por Mariana Siriaco — teoria, prática supervisionada e certificado incluso.</p>
+        </div>
+
+        <div class="courses-grid">
+          <div class="course-card reveal">
+            <div class="course-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="course-badge">4 semanas</div>
+            <h3 class="course-name">Massoterapia</h3>
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Teoria + Prática
+              </span>
+              <span>6 turmas formadas</span>
+            </div>
+            <ul class="course-topics">
+              <li>Drenagem linfática</li>
+              <li>Massagem modeladora</li>
+              <li>Massagem relaxante</li>
+              <li>Anatomia aplicada &amp; biossegurança</li>
+              <li>Empreendedorismo em estética</li>
+            </ul>
+            <div class="course-cert">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Certificado de conclusão incluso
+            </div>
+          </div>
+
+          <div class="course-card reveal">
+            <div class="course-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <div class="course-badge">10 horas</div>
+            <h3 class="course-name">Ventosaterapia</h3>
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Teoria + Prática
+              </span>
+              <span>Presencial</span>
+            </div>
+            <ul class="course-topics">
+              <li>Técnica de ventosas corporais</li>
+              <li>Indicações e contraindicações</li>
+              <li>Protocolos de aplicação</li>
+              <li>Biossegurança e higienização</li>
+              <li>Prática supervisionada</li>
+            </ul>
+            <div class="course-cert">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Certificado de conclusão incluso
+            </div>
+          </div>
+
+          <div class="course-card reveal">
+            <div class="course-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="course-badge">Intensivo</div>
+            <h3 class="course-name">Massagem Desportiva</h3>
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Teoria + Prática
+              </span>
+              <span>Presencial</span>
+            </div>
+            <ul class="course-topics">
+              <li>Técnicas pré e pós-competição</li>
+              <li>Massagem de recuperação muscular</li>
+              <li>Anatomia do movimento</li>
+              <li>Protocolos para atletas</li>
+              <li>Prática supervisionada</li>
+            </ul>
+            <div class="course-cert">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Certificado de conclusão incluso
+            </div>
+          </div>
+        </div>
+
+        <div class="courses-gallery reveal">
+          <div class="courses-gallery-item">
+            <img src="cursos/ventosaterapia-01.jpg" alt="Mariana Siriaco ensinando ventosaterapia" loading="lazy">
+          </div>
+          <div class="courses-gallery-item">
+            <img src="cursos/ventosaterapia-02.jpg" alt="Aula prática de ventosaterapia" loading="lazy">
+          </div>
+          <div class="courses-gallery-item">
+            <img src="cursos/ventosaterapia-03.jpg" alt="Técnica de ventosas corporais" loading="lazy">
+          </div>
+          <div class="courses-gallery-item">
+            <img src="cursos/ventosaterapia-certificados-01.jpg" alt="Alunas com certificados de ventosaterapia" loading="lazy">
+          </div>
+          <div class="courses-gallery-item">
+            <img src="cursos/ventosaterapia-certificados-02.jpg" alt="Formatura do curso de ventosaterapia" loading="lazy">
+          </div>
+        </div>
+
+        <div class="courses-cta reveal">
+          <p>Quer se inscrever na próxima turma? Fale com a Mariana.</p>
+          <a href="https://wa.me/5513997147555?text=Olá!%20Tenho%20interesse%20nos%20cursos%20da%20Siriaco's.%20Pode%20me%20passar%20mais%20informações?" target="_blank" rel="noopener noreferrer" class="btn btn-on-dark">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.115 1.528 5.845L0 24l6.335-1.507A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.663-.497-5.195-1.367l-.373-.218-3.864.919.979-3.768-.241-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Quero Me Inscrever
+          </a>
         </div>
       </div>
     </section>
@@ -1530,6 +1800,7 @@
           <h4>Links Rápidos</h4>
           <div class="footer-links">
             <a href="#inicio">Início</a>
+            <a href="#cursos">Cursos</a>
             <a href="#sobre">Sobre</a>
             <a href="#tratamentos">Tratamentos</a>
             <a href="#resultados">Resultados</a>
