@@ -780,30 +780,41 @@
     }
     .results-header .section-subtitle { margin-left: auto; margin-right: auto; }
 
-    .results-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 60px;
+    .results-carousel-wrapper {
+      position: relative;
+      margin-bottom: 40px;
     }
 
+    .results-gallery {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .results-gallery::-webkit-scrollbar { display: none; }
+
     .result-card {
+      flex: 0 0 calc(33.333% - 14px);
+      scroll-snap-align: start;
       position: relative;
       aspect-ratio: 3/4;
       border-radius: var(--radius);
       overflow: hidden;
-      background: linear-gradient(160deg, var(--blush-light) 0%, var(--blush) 100%);
       cursor: pointer;
       transition: transform 0.4s var(--ease);
     }
     .result-card:hover { transform: scale(1.02); }
 
-    .result-card img { width: 100%; height: 100%; object-fit: cover; }
+    .result-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .result-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(78, 2, 35, 0.6) 100%);
+      background: linear-gradient(180deg, transparent 50%, rgba(78, 2, 35, 0.65) 100%);
       display: flex;
       align-items: flex-end;
       padding: 20px;
@@ -814,9 +825,33 @@
 
     .result-overlay span {
       color: var(--white);
-      font-weight: 500;
-      font-size: 0.85rem;
-      letter-spacing: 0.02em;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 28px 0 48px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blush);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      padding: 0;
+    }
+    .carousel-dot.active {
+      background: var(--wine);
+      width: 24px;
+      border-radius: 4px;
     }
 
     .results-cta { text-align: center; }
@@ -1068,7 +1103,7 @@
 
       .services-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
 
-      .results-gallery { grid-template-columns: repeat(2, 1fr); }
+      .result-card { flex: 0 0 calc(50% - 10px); }
 
       .testimonials { grid-template-columns: 1fr; }
 
@@ -1082,7 +1117,7 @@
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero-actions .btn { justify-content: center; }
       .btn { padding: 14px 28px; font-size: 0.82rem; }
-      .results-gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .result-card { flex: 0 0 82%; }
       .contact-actions { flex-direction: column; }
       .contact-actions .btn { justify-content: center; }
     }
@@ -1343,25 +1378,42 @@
           <p class="section-subtitle">Veja alguns resultados obtidos com nossos tratamentos. Mais confiança, mais autoestima e mais você.</p>
         </div>
 
-        <div class="results-gallery">
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 1">
-            <div class="result-overlay"><span>Enzimas Lipolíticas</span></div>
+        <div class="results-carousel-wrapper reveal">
+          <div class="results-gallery" id="resultsCarousel" role="list">
+            <div class="result-card" role="listitem">
+              <img src="resultados/pele-facial.png" alt="Antes e depois - Tratamento Facial" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Tratamento Facial</span></div>
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="resultados/modelagem-corporal-lateral.png" alt="Antes e depois - Modelagem Corporal" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Modelagem Corporal</span></div>
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="resultados/reducao-abdomen.png" alt="Antes e depois - Redução de Abdômen" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Enzimas Lipolíticas</span></div>
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="resultados/reducao-celulite-gluteos.png" alt="Antes e depois - Redução de Celulite" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Redução de Celulite</span></div>
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="resultados/rejuvenescimento-facial.png" alt="Antes e depois - Rejuvenescimento Facial" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Rejuvenescimento Facial</span></div>
+            </div>
+            <div class="result-card" role="listitem">
+              <img src="resultados/limpeza-poros.png" alt="Antes e depois - Limpeza de Pele" loading="lazy" width="600" height="800">
+              <div class="result-overlay"><span>Limpeza de Pele</span></div>
+            </div>
           </div>
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 2">
-            <div class="result-overlay"><span>Corrente Russa</span></div>
-          </div>
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 3">
-            <div class="result-overlay"><span>Drenagem Linfática</span></div>
-          </div>
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 4">
-            <div class="result-overlay"><span>Massoterapia</span></div>
-          </div>
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 5">
-            <div class="result-overlay"><span>Limpeza de Pele</span></div>
-          </div>
-          <div class="result-card reveal" role="img" aria-label="Resultado de tratamento estético - antes e depois 6">
-            <div class="result-overlay"><span>Tratamento Facial</span></div>
-          </div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots" aria-label="Navegação do carrossel" role="tablist">
+          <button class="carousel-dot active" data-index="0" aria-label="Resultado 1" role="tab"></button>
+          <button class="carousel-dot" data-index="1" aria-label="Resultado 2" role="tab"></button>
+          <button class="carousel-dot" data-index="2" aria-label="Resultado 3" role="tab"></button>
+          <button class="carousel-dot" data-index="3" aria-label="Resultado 4" role="tab"></button>
+          <button class="carousel-dot" data-index="4" aria-label="Resultado 5" role="tab"></button>
+          <button class="carousel-dot" data-index="5" aria-label="Resultado 6" role="tab"></button>
         </div>
 
         <div class="results-cta reveal">
@@ -1604,6 +1656,27 @@
         console.log('[Siriaco] WhatsApp click:', label);
       });
     });
+
+    // Carousel dots
+    (function() {
+      const carousel = document.getElementById('resultsCarousel');
+      const dots = document.querySelectorAll('#carouselDots .carousel-dot');
+      if (!carousel || !dots.length) return;
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          const index = parseInt(this.dataset.index);
+          const card = carousel.children[index];
+          if (card) carousel.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+        });
+      });
+
+      carousel.addEventListener('scroll', function() {
+        const cardWidth = carousel.children[0] ? carousel.children[0].offsetWidth + 20 : 1;
+        const active = Math.round(carousel.scrollLeft / cardWidth);
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === active); });
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
